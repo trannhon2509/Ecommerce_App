@@ -1,7 +1,9 @@
 ﻿
 using Ecommerce_App.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 namespace Ecommerce_App;
 
 public class Program
@@ -10,11 +12,38 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        // Configuration
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+
         builder.Services.AddDbContext<AplicationDbContext>(options =>
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
         });
 
+        // Get SecretKey from configuration
+        var secretKey = configuration["SecretKey"];
+        var key = Encoding.ASCII.GetBytes(secretKey);
+
+        // Cấu hình JWT
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        }).AddJwtBearer(options =>
+        {
+            /* options.RequireHttpsMetadata = false; // Set true in production
+             options.SaveToken = true;*/
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ClockSkew = TimeSpan.Zero
+            };
+        });
         // Add services to the container.
 
         builder.Services.AddControllersWithViews();
