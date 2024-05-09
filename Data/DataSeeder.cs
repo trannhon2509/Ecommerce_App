@@ -23,6 +23,18 @@ namespace Ecommerce_App.Data
             _context.SaveChanges();
             SeedProducts(50); // Seed 50 sản phẩm
             _context.SaveChanges();
+            SeedOrders(20); // Seed 20 đơn hàng
+            _context.SaveChanges();
+            SeedRatings(50); // Seed 50 đánh giá
+            _context.SaveChanges();
+            SeedFavoriteProducts(30); // Seed 30 sản phẩm yêu thích
+            _context.SaveChanges();
+            SeedComments(50); // Seed 50 bình luận
+            _context.SaveChanges();
+            SeedCoupons(10); // Seed 10 coupon
+            _context.SaveChanges();
+            SeedCouponProducts(5); // Seed 5 sản phẩm cho mỗi coupon
+            _context.SaveChanges();
         }
 
         private void SeedRoles()
@@ -140,6 +152,142 @@ namespace Ecommerce_App.Data
                             CategoryId = categories[_random.Next(categories.Count)].CategoryId // Chọn ngẫu nhiên một danh mục từ danh sách các danh mục có sẵn
                         };
                         _context.Products.Add(product);
+                    }
+                }
+            }
+        }
+        private void SeedOrders(int count)
+        {
+            if (!_context.Orders.Any())
+            {
+                var users = _context.Users.ToList();
+                for (int i = 0; i < count; i++)
+                {
+                    var order = new Order
+                    {
+                        UserId = users[_random.Next(users.Count)].UserId,
+                        OrderDate = DateTime.Now.AddDays(-_random.Next(1, 30)), // Lấy ngày ngẫu nhiên trong khoảng 30 ngày trước đến ngày hiện tại
+                        TotalAmount = _random.Next(10000, 1000000), // Tổng số tiền ngẫu nhiên từ 10,000 đến 1,000,000
+                        OrderStatus = _random.Next(0, 2) == 0 ? "Pending" : "Completed", // Trạng thái đơn hàng ngẫu nhiên
+                        Note = GenerateRandomString(20) // Ghi chú ngẫu nhiên
+                    };
+                    _context.Orders.Add(order);
+
+                    // Thêm chi tiết đơn hàng
+                    SeedOrderDetails(order);
+                }
+            }
+        }
+
+        private void SeedOrderDetails(Order order)
+        {
+            var products = _context.Products.ToList();
+            for (int i = 0; i < _random.Next(1, 5); i++) // Mỗi đơn hàng có từ 1 đến 5 sản phẩm
+            {
+                var product = products[_random.Next(products.Count)];
+                var orderDetail = new OrderDetail
+                {
+                    OrderId = order.OrderId,
+                    ProductId = product.ProductId,
+                    Quantity = _random.Next(1, 10), // Số lượng sản phẩm từ 1 đến 10
+                    UnitPrice = product.ProductPrice // Giá của sản phẩm
+                };
+                _context.OrderDetails.Add(orderDetail);
+            }
+        }
+        private void SeedRatings(int count)
+        {
+            if (!_context.Ratings.Any())
+            {
+                var users = _context.Users.ToList();
+                var products = _context.Products.ToList();
+                for (int i = 0; i < count; i++)
+                {
+                    var rating = new Rating
+                    {
+                        UserId = users[_random.Next(users.Count)].UserId,
+                        ProductId = products[_random.Next(products.Count)].ProductId,
+                        RatingValue = _random.Next(1, 6), // Đánh giá từ 1 đến 5
+                        RatingDate = DateTime.Now.AddDays(-_random.Next(1, 30)) // Ngày đánh giá ngẫu nhiên trong khoảng 30 ngày trước đến ngày hiện tại
+                    };
+                    _context.Ratings.Add(rating);
+                }
+            }
+        }
+
+        private void SeedFavoriteProducts(int count)
+        {
+            if (!_context.FavoriteProducts.Any())
+            {
+                var users = _context.Users.ToList();
+                var products = _context.Products.ToList();
+                for (int i = 0; i < count; i++)
+                {
+                    var favoriteProduct = new FavoriteProduct
+                    {
+                        UserId = users[_random.Next(users.Count)].UserId,
+                        ProductId = products[_random.Next(products.Count)].ProductId,
+                        DateAdded = DateTime.Now.AddDays(-_random.Next(1, 30)) // Ngày thêm vào danh sách yêu thích ngẫu nhiên trong khoảng 30 ngày trước đến ngày hiện tại
+                    };
+                    _context.FavoriteProducts.Add(favoriteProduct);
+                }
+            }
+        }
+
+        private void SeedComments(int count)
+        {
+            if (!_context.Comments.Any())
+            {
+                var users = _context.Users.ToList();
+                var products = _context.Products.ToList();
+                for (int i = 0; i < count; i++)
+                {
+                    var comment = new Comment
+                    {
+                        UserId = users[_random.Next(users.Count)].UserId,
+                        ProductId = products[_random.Next(products.Count)].ProductId,
+                        CommentText = GenerateRandomString(50), // Nội dung bình luận ngẫu nhiên
+                        CommentDate = DateTime.Now.AddDays(-_random.Next(1, 30)) // Ngày bình luận ngẫu nhiên trong khoảng 30 ngày trước đến ngày hiện tại
+                    };
+                    _context.Comments.Add(comment);
+                }
+            }
+        }
+        private void SeedCoupons(int count)
+        {
+            if (!_context.Coupons.Any())
+            {
+                for (int i = 0; i < count; i++)
+                {
+                    var coupon = new Coupon
+                    {
+                        CouponCode = GenerateRandomString(8), // Mã coupon ngẫu nhiên
+                        DiscountType = _random.Next(2) == 0 ? "Percentage" : "Fixed", // Loại giảm giá: Theo phần trăm hoặc cố định
+                        DiscountValue = _random.Next(10, 50), // Giá trị giảm giá ngẫu nhiên từ 10 đến 50 (phần trăm hoặc giá tiền tùy thuộc vào loại)
+                        ExpiryDate = DateTime.Now.AddDays(_random.Next(30, 180)), // Ngày hết hạn ngẫu nhiên trong khoảng 30 đến 180 ngày sau ngày hiện tại
+                        ActiveStatus = _random.Next(2) == 0 // Tình trạng hoạt động: true hoặc false
+                    };
+                    _context.Coupons.Add(coupon);
+                }
+            }
+        }
+
+        private void SeedCouponProducts(int count)
+        {
+            if (!_context.CouponProducts.Any())
+            {
+                var coupons = _context.Coupons.ToList();
+                var products = _context.Products.ToList();
+                foreach (var coupon in coupons)
+                {
+                    for (int i = 0; i < count; i++)
+                    {
+                        var couponProduct = new CouponProduct
+                        {
+                            CouponId = coupon.CouponId,
+                            ProductId = products[_random.Next(products.Count)].ProductId
+                        };
+                        _context.CouponProducts.Add(couponProduct);
                     }
                 }
             }
