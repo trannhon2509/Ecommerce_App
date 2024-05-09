@@ -99,9 +99,9 @@ namespace Ecommerce_App.Data
             if (!_context.Categories.Any())
             {
                 _context.Categories.AddRange(
-                    new Category { CategoryName = "Electronics" },
-                    new Category { CategoryName = "Clothing" },
-                    new Category { CategoryName = "Books" }
+                    new Category { CategoryName = "Flower" },
+                    new Category { CategoryName = "Bag" },
+                    new Category { CategoryName = "Lamp" }
                 );
             }
         }
@@ -113,18 +113,38 @@ namespace Ecommerce_App.Data
                 var categories = _context.Categories.ToList();
                 for (int i = 0; i < count; i++)
                 {
-                    var product = new Product
                     {
-                        ProductName = GenerateRandomString(10),
-                        ProductDescription = GenerateRandomString(20),
-                        ProductPrice = _random.Next(10, 1000), // Giá sản phẩm ngẫu nhiên từ 10 đến 1000
-                        ProductQuantity = _random.Next(1, 100), // Số lượng sản phẩm ngẫu nhiên từ 1 đến 100
-                        ProductImageUrl = "https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/418524171_122093818412187017_1499128247207467143_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=f_Lb2bGxcvkQ7kNvgHVyxGE&_nc_ht=scontent.fdad1-2.fna&oh=00_AfA9Fivg5mARoCZRc7uTluL7cybKbyw4XupswQbilvcJcw&oe=66425624", // URL hình ảnh logo của nhóm mình , ví dụ tạm
-                        CategoryId = categories[_random.Next(categories.Count)].CategoryId // Chọn ngẫu nhiên một danh mục từ danh sách các danh mục có sẵn
-                    };
-                    _context.Products.Add(product);
+                        var productNameIndex = _random.Next(1, 4); // Chọn một số ngẫu nhiên từ 1 đến 3
+                        var productName = productNameIndex switch
+                        {
+                            1 => "Hoa",
+                            2 => "Túi sách",
+                            _ => "Đèn"
+                        };
+
+                        var productDescriptionIndex = _random.Next(1, 3); // Chọn một số ngẫu nhiên từ 1 đến 2
+                        var productDescription = productDescriptionIndex switch
+                        {
+                            1 => "Thân thiện với môi trường",
+                            _ => "Rất phù hợp với sự xinh đẹp của bạn"
+                        };
+                        var product = new Product
+                        {
+
+
+                            ProductName = productName,
+                            ProductDescription = productDescription,
+                            ProductPrice = _random.Next(50000, 200000), 
+                            ProductQuantity = _random.Next(50, 100), 
+                            ProductImageUrl = "https://scontent.fdad1-2.fna.fbcdn.net/v/t39.30808-6/418524171_122093818412187017_1499128247207467143_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=f_Lb2bGxcvkQ7kNvgHVyxGE&_nc_ht=scontent.fdad1-2.fna&oh=00_AfA9Fivg5mARoCZRc7uTluL7cybKbyw4XupswQbilvcJcw&oe=66425624", // URL hình ảnh logo của nhóm mình , ví dụ tạm
+                            CategoryId = categories[_random.Next(categories.Count)].CategoryId // Chọn ngẫu nhiên một danh mục từ danh sách các danh mục có sẵn
+                        };
+                        _context.Products.Add(product);
+                    }
                 }
             }
         }
     }
 }
+    
+
