@@ -44,10 +44,22 @@ namespace Ecommerce_App.Data
             if (!_context.Categories.Any())
             {
                 _context.Categories.AddRange(
-                    new Category { CategoryName = "Đèn" },
-                    new Category { CategoryName = "Hoa" },
-                    new Category { CategoryName = "Túi" },
-                    new Category { CategoryName = "Phụ kiện" }
+                    new Category { 
+                        CategoryName = "Đèn",
+                        CreatedAt = GenerateRandomDate()
+                    },
+                    new Category { 
+                        CategoryName = "Hoa",
+                        CreatedAt = GenerateRandomDate()
+                    },
+                    new Category { 
+                        CategoryName = "Túi",
+                        CreatedAt = GenerateRandomDate()
+                    },
+                    new Category { 
+                        CategoryName = "Phụ kiện",
+                        CreatedAt = GenerateRandomDate()
+                    }
                 );
             }
         }
@@ -65,7 +77,8 @@ namespace Ecommerce_App.Data
                         ProductQuantity = 100,
                         ProductImageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fkheotay.com.vn%2Flam-do-handmade%2Fcach-lam-den-bang-thia-nhua-sieu-doc-dao&psig=AOvVaw1xq-3wbE5vwbLOj2X7BGpj&ust=1715356495412000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCOjPr4b3gIYDFQAAAAAdAAAAABAc",
                         CategoryId = _random.Next(1, (_context.Categories.Count() + 1)),
-                        Status = true
+                        Status = true,
+                        CreatedAt = GenerateRandomDate()
                     },
                     new Product
                     {
@@ -75,7 +88,8 @@ namespace Ecommerce_App.Data
                         ProductQuantity = 100,
                         ProductImageUrl = "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.amazon.co.uk%2FLED-Camping-Lantern-Rechargeable-Lights%2Fdp%2FB0B9XQZXMX&psig=AOvVaw3UDXJy0h_e0Ns0zEwWkfKY&ust=1715357504673000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCIiZ2-f6gIYDFQAAAAAdAAAAABAJ",
                         CategoryId = _random.Next(1, (_context.Categories.Count() + 1)),
-                        Status = true
+                        Status = true,
+                        CreatedAt = GenerateRandomDate()
                     },
                     new Product
                     {
@@ -85,7 +99,8 @@ namespace Ecommerce_App.Data
                         ProductQuantity = 100,
                         ProductImageUrl = "https://i.pinimg.com/564x/73/a6/11/73a611ca3032cc8729c390c1c8adbdd1.jpg",
                         CategoryId = _random.Next(1, (_context.Categories.Count() + 1)),
-                        Status = true
+                        Status = true,
+                        CreatedAt = GenerateRandomDate()
                     },
                     new Product
                     {
@@ -95,7 +110,8 @@ namespace Ecommerce_App.Data
                         ProductQuantity = 100,
                         ProductImageUrl = "https://i.pinimg.com/564x/17/04/0c/17040cf9a53ffc26003639d851d00007.jpg",
                         CategoryId = _random.Next(1, (_context.Categories.Count() + 1)),
-                        Status = true
+                        Status = true,
+                        CreatedAt = GenerateRandomDate()
                     },
                     new Product
                     {
@@ -105,7 +121,8 @@ namespace Ecommerce_App.Data
                         ProductQuantity = 100,
                         ProductImageUrl = "https://i.pinimg.com/564x/15/89/b3/1589b3c19fb7cf3853c75f2ed092ff1d.jpg",
                         CategoryId = _random.Next(1, (_context.Categories.Count() + 1)),
-                        Status = true
+                        Status = true,
+                        CreatedAt = GenerateRandomDate()
                     },
                     new Product
                     {
@@ -115,7 +132,8 @@ namespace Ecommerce_App.Data
                         ProductQuantity = 100,
                         ProductImageUrl = "https://i.pinimg.com/564x/11/89/45/1189456b0cc13d69d6f42e550c7c209e.jpg",
                         CategoryId = _random.Next(1, (_context.Categories.Count() + 1)),
-                        Status = true
+                        Status = true,
+                        CreatedAt = GenerateRandomDate()
                     },
                     new Product
                     {
@@ -125,7 +143,8 @@ namespace Ecommerce_App.Data
                         ProductQuantity = 100,
                         ProductImageUrl = "https://i.pinimg.com/564x/68/82/26/6882261694cb0eb7b6736dbcfa444b13.jpg",
                         CategoryId = _random.Next(1, (_context.Categories.Count() + 1)),
-                        Status = true
+                        Status = true,
+                        CreatedAt = GenerateRandomDate()
                     }
                 );
             }
@@ -178,6 +197,7 @@ namespace Ecommerce_App.Data
                         DiscountValue = _random.Next(1, 101),
                         ExpiryDate = GenerateRandomDate(),
                         ActiveStatus = true,
+                        CreatedAt = GenerateRandomDate()
                     };
                     _context.Coupons.Add(coupon);
                 }
@@ -265,7 +285,8 @@ namespace Ecommerce_App.Data
                         OrderDate = GenerateRandomDate(),
                         TotalAmount = GenerateRandomAmount(),
                         OrderStatus = orderStatuses[_random.Next(orderStatuses.Length)], // Chọn ngẫu nhiên một trong số các trạng thái
-                        Note = GenerateRandomNote() // Tạo ghi chú ngẫu nhiên hoặc rỗng
+                        Note = GenerateRandomNote(), // Tạo ghi chú ngẫu nhiên hoặc rỗng
+                        CreatedAt = GenerateRandomDate()
                     };
                     _context.Orders.Add(order);
                 }

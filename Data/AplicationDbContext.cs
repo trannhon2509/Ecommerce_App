@@ -45,6 +45,11 @@ namespace Ecommerce_App.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Category>().Property(c => c.CreatedAt).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Coupon>().Property(c => c.CreatedAt).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Order>().Property(o => o.CreatedAt).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Product>().Property(p => p.CreatedAt).HasDefaultValueSql("getdate()");
+
             modelBuilder.Entity<FavoriteProduct>()
             .HasKey(fp => fp.FavoriteId); // Cài đặt khóa chính cho bảng FavoriteProduct
 

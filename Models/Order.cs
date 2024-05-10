@@ -8,6 +8,7 @@
         public decimal TotalAmount { get; set; }
         public string OrderStatus { get; set; }
         public string Note { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public User User { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
