@@ -17,9 +17,9 @@ namespace Ecommerce_App.Data
         {
             SeedRoles();
             _context.SaveChanges();
-            SeedUsers(500);
+            SeedUsers(200);
             _context.SaveChanges();
-            SeedCoupons(500);
+            SeedCoupons(200);
             _context.SaveChanges();
             _SeedCategories();
             _context.SaveChanges();
@@ -27,11 +27,11 @@ namespace Ecommerce_App.Data
             _context.SaveChanges();
             SeedCouponProduct();
             _context.SaveChanges();
-            SeedFavoriteProduct(1000);
+            SeedFavoriteProduct(200);
             _context.SaveChanges();
             SeedComment();
             _context.SaveChanges();
-            SeedOrder(1000);
+            SeedOrder(300);
             _context.SaveChanges();
             SeedOrderDetail();
             _context.SaveChanges();
@@ -339,7 +339,7 @@ namespace Ecommerce_App.Data
             else
             {
                 return GenerateRandomString(20);
-                
+
             }
         }
         private Address GenerateRandomAddress()
