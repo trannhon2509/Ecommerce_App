@@ -8,6 +8,8 @@
         public string Password { get; set; }
         public int DefaultAddressId { get; set; }
         public string PhoneNumber { get; set; }
+        
+        public bool Status { get; set; }
         public int RoleId { get; set; }
 
         public Role Role { get; set; }
