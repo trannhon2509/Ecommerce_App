@@ -8,12 +8,7 @@ function FilterProduct() {
                         <div className="row">
                             <div className="col-sm-12">
                                 <div className="input-group">
-                                    <input type="text" className="form-control" placeholder="Search products..." />
-                                    <span className="input-group-btn">
-                                        <button className="btn btn-primary" type="submit">
-                                            <i class="bi bi-search"></i>
-                                        </button>
-                                    </span>
+                                    <input type="text" className="input-group" placeholder="Search products..." />
                                 </div>
                             </div>
                         </div>

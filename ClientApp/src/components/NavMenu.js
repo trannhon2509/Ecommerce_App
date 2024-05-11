@@ -13,16 +13,13 @@ const NavMenu = () => {
 
   return (
     <header>
-      <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3 " container light>
-        <NavbarBrand tag={Link} to="/"><img src='/imgs/logo.png' width={40} alt='logo'/> REVIBECO</NavbarBrand>
+      <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white border-bottom box-shadow mb-3 fixed-top p-0" container light>
+        <NavbarBrand tag={Link} to="/"><img src='/imgs/logo.png' width={40} alt='logo' /> REVIBECO</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse className="d-sm-inline-flex flex-sm-row justify-content-between" isOpen={!collapsed} navbar>
           <ul className="navbar-nav flex-grow align-items-center">
             <NavItem>
               <NavLink tag={Link} className="text-dark" to={RoutePath.HOME}>Home</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink tag={Link} className="text-dark" to={RoutePath.ABOUT}>About</NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={Link} className="text-dark" to={RoutePath.SHOP}>Shop</NavLink>
@@ -49,8 +46,8 @@ const NavMenu = () => {
             </NavItem> */}
             <NavItem >
               <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
-                <DropdownToggle caret className="text-dark pt-2 header-dropdown bg-light border-0"> 
-                  <img src='/imgs/logo.png' alt='' width={25}/> Hello Nhon
+                <DropdownToggle caret className="text-dark pt-2 header-dropdown bg-light border-0">
+                  <img src='/imgs/logo.png' alt='' width={25} /> Hello Nhon
                 </DropdownToggle>
                 <DropdownMenu>
                   <DropdownItem tag={Link} to="/action1"> <Link tag={Link} className="text-dark text-decoration-none" to="/register">Register</Link></DropdownItem>
