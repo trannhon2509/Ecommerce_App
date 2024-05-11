@@ -44,19 +44,23 @@ namespace Ecommerce_App.Data
             if (!_context.Categories.Any())
             {
                 _context.Categories.AddRange(
-                    new Category { 
+                    new Category
+                    {
                         CategoryName = "Đèn",
                         CreatedAt = GenerateRandomDate()
                     },
-                    new Category { 
+                    new Category
+                    {
                         CategoryName = "Hoa",
                         CreatedAt = GenerateRandomDate()
                     },
-                    new Category { 
+                    new Category
+                    {
                         CategoryName = "Túi",
                         CreatedAt = GenerateRandomDate()
                     },
-                    new Category { 
+                    new Category
+                    {
                         CategoryName = "Phụ kiện",
                         CreatedAt = GenerateRandomDate()
                     }
@@ -190,14 +194,23 @@ namespace Ecommerce_App.Data
             {
                 for (int i = 0; i < count; i++)
                 {
+                    var createdAt = GenerateRandomDate();
+                    var expiryDate = GenerateRandomDate();
+
+                    // Ensure createdAt is before expiryDate
+                    while (createdAt >= expiryDate)
+                    {
+                        createdAt = GenerateRandomDate();
+                        expiryDate = GenerateRandomDate();
+                    }
                     var coupon = new Coupon
                     {
                         CouponCode = GenerateRandomString(10),
                         DiscountType = (_random.Next(2) == 0) ? "Discount for product" : "Coupon for bill",
                         DiscountValue = _random.Next(1, 101),
-                        ExpiryDate = GenerateRandomDate(),
+                        ExpiryDate = expiryDate,
                         ActiveStatus = true,
-                        CreatedAt = GenerateRandomDate()
+                        CreatedAt = createdAt
                     };
                     _context.Coupons.Add(coupon);
                 }

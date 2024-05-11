@@ -12,6 +12,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        // Đăng ký IHttpContextAccessor
+        builder.Services.AddHttpContextAccessor();
         // Configuration
         var configuration = new ConfigurationBuilder()
             .AddJsonFile("appsettings.json")
@@ -44,6 +46,16 @@ public class Program
                 ClockSkew = TimeSpan.Zero
             };
         });
+
+        // Add session services
+        builder.Services.AddSession(options =>
+        {
+            options.Cookie.Name = ".YourApp.Session";
+            options.IdleTimeout = TimeSpan.FromMinutes(30); // Thời gian timeout của session
+            options.Cookie.HttpOnly = true;
+            options.Cookie.IsEssential = true;
+        });
+
         // Add services to the container.
 
         builder.Services.AddControllersWithViews();
@@ -61,6 +73,8 @@ public class Program
         app.UseStaticFiles();
         app.UseRouting();
 
+        // Add session middleware
+        app.UseSession();
 
         app.MapControllerRoute(
             name: "default",
