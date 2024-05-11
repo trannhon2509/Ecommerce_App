@@ -36,7 +36,18 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\Pages\" />
+    <Folder Include="ClientApp\public\imgs\" />
+    <Folder Include="ClientApp\src\assets\imgs\" />
+    <Folder Include="ClientApp\src\assets\fonts\" />
+    <Folder Include="ClientApp\src\assets\css\" />
+    <Folder Include="ClientApp\src\layouts\" />
+    <Folder Include="ClientApp\src\pages\" />
+    <Folder Include="ClientApp\src\redux\acctions\" />
+    <Folder Include="ClientApp\src\redux\stores\" />
+    <Folder Include="ClientApp\src\redux\reducers\" />
+    <Folder Include="ClientApp\src\routes\" />
+    <Folder Include="ClientApp\src\services\api\" />
+    <Folder Include="ClientApp\src\services\utils\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

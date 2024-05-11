@@ -1,4 +1,6 @@
-﻿namespace Ecommerce_App.Models
+﻿using Microsoft.Identity.Client;
+
+namespace Ecommerce_App.Models
 {
     public class Coupon
     {
@@ -8,6 +10,7 @@
         public decimal DiscountValue { get; set; }
         public DateTime ExpiryDate { get; set; }
         public bool ActiveStatus { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public ICollection<CouponProduct> CouponProducts { get; set; }
     }

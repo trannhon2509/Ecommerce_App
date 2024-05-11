@@ -8,7 +8,10 @@
         public decimal ProductPrice { get; set; }
         public int ProductQuantity { get; set; }
         public string ProductImageUrl { get; set; }
+        public bool Status { get; set;}
         public int CategoryId { get; set; }
+
+        public DateTime CreatedAt { get; set; }
 
         public Category Category { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }

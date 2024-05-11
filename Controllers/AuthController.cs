@@ -8,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
+using System.Text.Json;
 namespace Ecommerce_App.Controllers
 {
     [Route("auth/")]
@@ -17,15 +17,17 @@ namespace Ecommerce_App.Controllers
     {
         private readonly AplicationDbContext _context;
         private readonly IConfiguration _configuration;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthController(AplicationDbContext context, IConfiguration configuration)
+        public AuthController(AplicationDbContext context, IConfiguration configuration,  IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         [HttpPost("login")]
-        public IActionResult Login(LoginModel model)
+                public IActionResult Login(LoginModel model)
         {
             var user = AuthenticateUser(model.Username, model.Password);
             if (user == null)
@@ -36,12 +38,21 @@ namespace Ecommerce_App.Controllers
                     Token = null
                 });
             }
-            return Ok(new AuthModel
+            
+            // Lưu thông tin đăng nhập vào session
+            var authModel = new AuthModel
             {
                 Role = user.Role.RoleName,
-                Token = GenerateToken(user)
-            });
+                Token = GenerateToken(user),
+                Email = user.Email
+            };
+
+            // Lưu authModel vào session
+            _httpContextAccessor.HttpContext.Session.SetString("AuthModel", JsonSerializer.Serialize(authModel));
+
+            return Ok(authModel);
         }
+
 
         [HttpPost("register")]
         public IActionResult Register()
