@@ -41,12 +41,12 @@ const NavMenu = () => {
             <NavItem>
               <NavLink tag={Link} className="text-dark btn bt btn-light header-btn" to="/login"><i className="bi bi-bag-heart-fill"></i></NavLink>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
               <NavLink tag={Link} className="text-dark btn px-3 header-btn-login" to="/login">Login</NavLink>
             </NavItem>
             <NavItem>
               <NavLink tag={Link} className="text-dark btn px-3 header-btn-register" to="/register">Register</NavLink>
-            </NavItem>
+            </NavItem> */}
             <NavItem >
               <Dropdown isOpen={dropdownOpen} toggle={toggleDropdown}>
                 <DropdownToggle caret className="text-dark pt-2 header-dropdown bg-light border-0"> 

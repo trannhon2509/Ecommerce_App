@@ -8,6 +8,7 @@ import About from './pages/About'
 import Shop from './pages/Shop'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
+import ProductLayout from "./layouts/ProductLayout";
 const AppRoutes = [
   {
     path: RoutePath.HOME,
@@ -22,7 +23,7 @@ const AppRoutes = [
   {
     path: RoutePath.SHOP,
     element: Shop,
-    layout: DefaultLayout
+    layout: ProductLayout
   },
   {
     path: RoutePath.BLOG,
