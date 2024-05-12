@@ -65,7 +65,7 @@ function Header() {
                     <i class="bi bi-person-circle text-success"></i>
                   </button>
                   <ul className="dropdown-menu dropdown-effect" aria-labelledby="dropdownMenuButton1">
-                    <li><Link className="dropdown-item" to={RoutePaths.login}>Profile</Link></li>
+                    <li><Link className="dropdown-item" to={RoutePaths.profile}>Profile</Link></li>
                     <li><Link className="dropdown-item" to={RoutePaths.admin}>Admin</Link></li>
                     <li><Link className="dropdown-item" to={RoutePaths.login}>Sign in</Link></li>
                     <li><Link className="dropdown-item" to={''}>Sign out ㅤ<i class="bi bi-box-arrow-right"></i></Link></li>

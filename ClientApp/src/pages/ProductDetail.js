@@ -1,5 +1,6 @@
 import React from 'react';
 import '../assets/css/ProductDetail.css';
+import Comment from '../components/Comment';
 
 function ProductDetail({ rating }) {
     rating = 5;
@@ -37,6 +38,7 @@ function ProductDetail({ rating }) {
                     <button className="buy--btn">ADD TO CART</button>
                 </div>
             </section>
+            <Comment />
         </div>
     );
 }

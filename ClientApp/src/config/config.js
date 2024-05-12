@@ -20,6 +20,7 @@ import ManageUser from '../pages/Admin/ManageUser'
 import ChatAdmin from '../pages/Admin/Chat'
 import ManageProduct from '../pages/Admin/ManageProduct'
 import ProductDetail from '../pages/ProductDetail'
+import Profile from '../pages/Profile'
 // Route paths for navigation
 const RoutePaths = {
     // User path
@@ -33,6 +34,8 @@ const RoutePaths = {
     team: '/team', // Team page
     willist: '/willist', // Willist page
     productDetail: '/product-detail', // Product detail page
+    shoppingCard: '/shoppingCard',
+    profile: '/profile',
     // Admin path
     admin: '/admin', // Admin dashboard
     adminBlog: '/admin/blog', // Admin blog page
@@ -41,6 +44,7 @@ const RoutePaths = {
     adminUser: '/admin/user', // Admin user page
     adminProduct: '/admin/product',
     login: '/login', //  login page
+
 }
 
 // Public routes accessible to all users
@@ -56,6 +60,7 @@ const PublicRoutes = [
     {path: RoutePaths.willist, component: Willist, layout: DefaultLayout}, // Willist page with default layout
     {path: RoutePaths.login, component: Login, layout: EmptyLayout},
     {path: RoutePaths.productDetail, component: ProductDetail, layout: DefaultLayout},
+    {path: RoutePaths.profile, component: Profile, layout: DefaultLayout},
 ]
 
 // Private routes accessible to admin users

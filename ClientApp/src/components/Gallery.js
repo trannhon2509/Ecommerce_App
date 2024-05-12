@@ -17,13 +17,13 @@ function Gallery() {
         }
       }, []);
   return (
-    <div className='container'>
+    <div className='container-fluid p-0 m-0'>
         <Swiper
           ref={swiperRef}
           modules={[Navigation, Pagination, A11y, Autoplay]}
           spaceBetween={50}
-          slidesPerView={3}
-          navigation
+          slidesPerView={4}
+          navigation={false}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           onSwiper={(swiper) => console.log(swiper)}

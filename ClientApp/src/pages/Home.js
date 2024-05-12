@@ -2,7 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { RoutePaths } from '../config/config';
 import Gallery from '../components/Gallery';
+import { useTypewriter, Cursor } from 'react-simple-typewriter'
 function Home() {
+  const [text] = useTypewriter({
+    words: ['protect', 'cherish', 'conserve'],
+    loop: {},
+    deleteSpeed: 200,
+    typeSpeed: 100,
+  })
   return (
     <div>
       <section className="main-banner" id="home">
@@ -21,7 +28,7 @@ function Home() {
                 <div className="banner-text">
                   <h1 className="h1-title">
                     Let's { }
-                    <span className='text-success'>protect</span>
+                    <span className='text-success'>{text}<Cursor /></span>
                     {'\n'}
                     Enviroment.
                   </h1>
