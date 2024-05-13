@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import { RoutePaths } from '../../config/config';
 function Footer() {
@@ -123,4 +123,4 @@ function Footer() {
   )
 }
 
-export default Footer
+export default memo(Footer) 

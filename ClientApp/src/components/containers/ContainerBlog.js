@@ -1,5 +1,6 @@
 import React from "react";
 import Blog from "../../components/Blog";
+import Pagging from "../Pagging";
 
 function ContainerBlog() {
   const blogs = [
@@ -42,6 +43,9 @@ function ContainerBlog() {
             title={blog.title}
           />
         ))}
+        <div className='mt-5'>
+              <Pagging startPage={1} endPage={3} itemsPerPage={4} />
+            </div>
       </div>
     </div>
   );

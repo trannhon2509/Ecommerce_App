@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from '../Card';
+import Pagging from '../Pagging';
 
 function ContainerCard() {
   const cardData = [
@@ -26,6 +27,9 @@ function ContainerCard() {
             />
           ))}
         </div>
+        <div className='mt-5'>
+              <Pagging startPage={1} endPage={3} itemsPerPage={4} />
+            </div>
       </div>
     </div>
   );

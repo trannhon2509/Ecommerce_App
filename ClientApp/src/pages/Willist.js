@@ -36,7 +36,7 @@ function Willist() {
       </div>
       <div className="shopping-cart-footer">
         <div className="column">
-          <Link className="btn btn-outline-secondary shadow" to={RoutePaths.shop}>
+          <Link className="btn btn-secondary shadow" to={RoutePaths.shop}>
             <i className="icon-arrow-left" />
             &nbsp;Back to Shopping
           </Link>

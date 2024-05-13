@@ -16,9 +16,7 @@ function FilterLayout({ children }) {
           <div className='col-md-4'>{(children.type.name === 'Shop' ? <FilterBar /> : <FilterBlog />)}</div>
           <div className='col-md-8'>
             {children}
-            <div className='mt-5'>
-              <Pagging startPage={1} endPage={3} itemsPerPage={4} />
-            </div>
+            
           </div>
         </div>
       </div>

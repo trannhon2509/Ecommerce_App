@@ -21,6 +21,7 @@ import ChatAdmin from '../pages/Admin/Chat'
 import ManageProduct from '../pages/Admin/ManageProduct'
 import ProductDetail from '../pages/ProductDetail'
 import Profile from '../pages/Profile'
+import BlogDetail from '../pages/BlogDetail'
 // Route paths for navigation
 const RoutePaths = {
     // User path
@@ -36,6 +37,7 @@ const RoutePaths = {
     productDetail: '/product-detail', // Product detail page
     shoppingCard: '/shoppingCard',
     profile: '/profile',
+    blogDetail: '/blogDetail',
     // Admin path
     admin: '/admin', // Admin dashboard
     adminBlog: '/admin/blog', // Admin blog page
@@ -61,6 +63,7 @@ const PublicRoutes = [
     {path: RoutePaths.login, component: Login, layout: EmptyLayout},
     {path: RoutePaths.productDetail, component: ProductDetail, layout: DefaultLayout},
     {path: RoutePaths.profile, component: Profile, layout: DefaultLayout},
+    {path: RoutePaths.blogDetail, component: BlogDetail, layout: FilterLayout},
 ]
 
 // Private routes accessible to admin users

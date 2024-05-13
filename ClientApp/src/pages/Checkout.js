@@ -5,7 +5,7 @@ function Checkout() {
     <div className="container">
   <div className="row">
     <div className="col-xl-8">
-      <div className="card">
+      <div className="card bg-light">
         <div className="card-body">
           <ol className="activity-checkout mb-0 px-4 mt-3">
             <li className="checkout-item">
@@ -208,7 +208,7 @@ function Checkout() {
       </div>
     </div>
     <div className="col-xl-4">
-      <div className="card checkout-order-summary">
+      <div className="card checkout-order-summary bg-light">
         <div className="card-body">
           <div className="p-3 bg-light mb-3">
             <h5 className="font-size-16 mb-0">Order Summary <span className="float-end ms-2">#MN0124</span></h5>
