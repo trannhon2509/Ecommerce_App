@@ -29,13 +29,30 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
+    <Compile Remove="ClientApp\src\redux\**" />
+    <Compile Remove="ClientApp\src\routes\**" />
+    <Compile Remove="ClientApp\src\services\**" />
     <Content Remove="$(SpaRoot)**" />
+    <Content Remove="ClientApp\src\redux\**" />
+    <Content Remove="ClientApp\src\routes\**" />
+    <Content Remove="ClientApp\src\services\**" />
+    <EmbeddedResource Remove="ClientApp\src\redux\**" />
+    <EmbeddedResource Remove="ClientApp\src\routes\**" />
+    <EmbeddedResource Remove="ClientApp\src\services\**" />
     <None Remove="$(SpaRoot)**" />
+    <None Remove="ClientApp\src\redux\**" />
+    <None Remove="ClientApp\src\routes\**" />
+    <None Remove="ClientApp\src\services\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\Pages\" />
+    <Folder Include="ClientApp\public\imgs\" />
+    <Folder Include="ClientApp\src\assets\imgs\" />
+    <Folder Include="ClientApp\src\assets\fonts\" />
+    <Folder Include="ClientApp\src\assets\css\" />
+    <Folder Include="ClientApp\src\layouts\" />
+    <Folder Include="ClientApp\src\pages\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

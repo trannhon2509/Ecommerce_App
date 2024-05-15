@@ -1,22 +1,30 @@
-import React, { Component } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import AppRoutes from './AppRoutes';
-import { Layout } from './components/Layout';
-import './custom.css';
+import './assets/css/App.css'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
+import { Fragment } from 'react';
+import { PublicRoutes, PrivateRoutes } from './config/config';
+import DefaultLayout from './layouts/DefaultLayout/DefaultLayout';
 
-export default class App extends Component {
-  static displayName = App.name;
-
-  render() {
-    return (
-      <Layout>
+function App() {
+  return (
+    <Router>
+      <div className="App">
         <Routes>
-          {AppRoutes.map((route, index) => {
-            const { element, ...rest } = route;
-            return <Route key={index} {...rest} element={element} />;
+          {PublicRoutes.map((route, index) => {
+            let Layout = DefaultLayout;
+            const Page = route.component
+            route.layout == null ? Layout = Fragment : Layout = route.layout;
+            return <Route key={index} path={route.path} element={<Layout><Page/></Layout>}></Route>
+          })}
+          {PrivateRoutes.map((route, index) => {
+            let Layout = DefaultLayout;
+            const Page = route.component
+            route.layout == null ? Layout = Fragment : Layout = route.layout;
+            return <Route key={index} path={route.path} element={<Layout><Page/></Layout>}></Route>
           })}
         </Routes>
-      </Layout>
-    );
-  }
+      </div>
+    </Router>
+  );
 }
+
+export default App;

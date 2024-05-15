@@ -11,6 +11,8 @@
         public bool Status { get; set;}
         public int CategoryId { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+
         public Category Category { get; set; }
         public ICollection<OrderDetail> OrderDetails { get; set; }
         public ICollection<Rating> Ratings { get; set; }

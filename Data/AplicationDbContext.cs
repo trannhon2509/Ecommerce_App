@@ -7,43 +7,31 @@ namespace Ecommerce_App.Data
     {
 
         public AplicationDbContext(DbContextOptions<AplicationDbContext> option) : base(option) { }
-
-
-
         // DbSet cho mỗi bảng trong cơ sở dữ liệu
-
         public DbSet<Product> Products { get; set; }
-
         public DbSet<Category> Categories { get; set; }
-
         public DbSet<Order> Orders { get; set; }
-
         public DbSet<OrderDetail> OrderDetails { get; set; }
-
         public DbSet<User> Users { get; set; }
-
         public DbSet<Address> Addresses { get; set; }
-
         public DbSet<Rating> Ratings { get; set; }
-
         public DbSet<Comment> Comments { get; set; }
-
         public DbSet<Coupon> Coupons { get; set; }
-
         public DbSet<CouponProduct> CouponProducts { get; set; }
-
         public DbSet<FavoriteProduct> FavoriteProducts { get; set; }
-
         public DbSet<Role> Roles { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
         }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Category>().Property(c => c.CreatedAt).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Coupon>().Property(c => c.CreatedAt).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Order>().Property(o => o.CreatedAt).HasDefaultValueSql("getdate()");
+            modelBuilder.Entity<Product>().Property(p => p.CreatedAt).HasDefaultValueSql("getdate()");
 
             modelBuilder.Entity<FavoriteProduct>()
             .HasKey(fp => fp.FavoriteId); // Cài đặt khóa chính cho bảng FavoriteProduct
